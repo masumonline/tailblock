@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div class="px-3 py-4 rounded bg-gray-50 dark:bg-gray-800">
+    <div class="px-3 py-4 bg-white dark:bg-gray-800">
       <ul class="space-y-2">
         <li>
           <a href="https://flowbite.com" class="flex pl-2.5 mb-5">
