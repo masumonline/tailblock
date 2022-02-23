@@ -39,7 +39,7 @@
           </li>
           <li>
             <!-- Toggle B -->
-            <div class="flex items-center justify-center w-full mb-12">
+            <div class="flex items-center justify-center w-full">
               <label for="toggleB" class="flex items-center cursor-pointer">
                 <!-- toggle -->
                 <div class="relative">
