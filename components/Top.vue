@@ -48,7 +48,9 @@
                     type="checkbox"
                     id="toggleB"
                     class="sr-only"
-                    v-on:change="changeMode()"
+                    v-model="isChecked"
+                    @change="changeMode()"
+                    
                   />
                   <!-- line -->
                   <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
@@ -57,8 +59,7 @@
                     class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
                   ></div>
                 </div>
-                <!-- label -->
-                <div class="ml-3 text-gray-700 dark:text-white font-medium">Switch Mode</div>
+                
               </label>
             </div>
           </li>
@@ -72,34 +73,45 @@
 export default {
   data() {
     return {
-      defaultMode: null,
+      isChecked: false,
       isDark: false,
     };
   },
 
-  created() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches == true) {
-      this.isDark = true;
-      console.log("dark");
-      document.body.classList.add('dark');
-    } else {
+  mounted() {
+    if (JSON.parse(localStorage.getItem("mode")) === null) {
       this.isDark = false;
-      console.log("light");
+      this.isChecked = false;
+      localStorage.setItem("mode", this.isDark);
     }
-    localStorage.setItem("mode", this.isDark);
+
+    if (JSON.parse(localStorage.getItem("mode")) == true) {
+      document.body.classList.add("dark");
+      this.isDark = true;
+      this.isChecked = true;
+      localStorage.setItem("mode", this.isDark);
+    }
+
+    if (JSON.parse(localStorage.getItem("mode")) == false) {
+      document.body.classList.remove("dark");
+      this.isDark = false;
+      this.isChecked = false;
+      localStorage.setItem("mode", this.isDark);
+      console.log(JSON.parse(localStorage.getItem("mode")));
+    }
   },
 
   methods: {
     changeMode() {
-      if(this.isDark == true){
+      if (this.isDark == true) {
         this.isDark = false;
-        document.body.classList.remove('dark');
+        localStorage.setItem("mode", this.isDark);
+        document.body.classList.remove("dark");
       } else {
         this.isDark = true;
-        document.body.classList.add('dark');
+        localStorage.setItem("mode", this.isDark);
+        document.body.classList.add("dark");
       }
-      
-      localStorage.setItem("mode", this.isDark);
     },
   },
 };
@@ -109,6 +121,6 @@ export default {
 /* Toggle B */
 input:checked ~ .dot {
   transform: translateX(100%);
-  background-color: #48bb78;
+  background-color: #000;
 }
 </style>
