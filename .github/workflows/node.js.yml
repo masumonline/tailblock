@@ -24,6 +24,9 @@ jobs:
 
         - name: Build 🏗️
           run: yarn build
+
+        - name: push dir
+          run: yarn add --dev push-dir
         
         - name: generate
           run: yarn generate
