@@ -38,6 +38,9 @@ export default {
   ],
   
 target: 'static',
+  router: {
+    base: '/tailblock/'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
